@@ -54,10 +54,7 @@ namespace Portal2D.Presentation.Inventory
 
         public static InventoryItem CreatePortalGunItem()
         {
-            var icon = Resources.Load<Sprite>("Portal2DItem/PortalGun");
-#if UNITY_EDITOR
-            if (icon == null) icon = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Resource/Portal2DItem/PortalGun.png");
-#endif
+            var icon = Resources.Load<Sprite>("Gameplay/PortalGun");
             if (icon == null) icon = SpriteFactory.CreateItemIconSprite("PortalGun");
 
             return new InventoryItem(
@@ -66,7 +63,7 @@ namespace Portal2D.Presentation.Inventory
                 1,
                 ItemType.Tool,
                 icon,
-                "空间折跃科技装备。右键长按蓄力瞄准，在静态平面投掷部署传送门（一蓝一红成对联通）。"
+                "鼠标左键放置蓝门 A，右键放置橙门 B。门必须完整贴合静态墙面或地面。"
             );
         }
 
@@ -400,7 +397,7 @@ namespace Portal2D.Presentation.Inventory
             if (selected == null || selected.count <= 0) return;
 
             Vector2 playerPos = player.transform.position;
-            Vector2 facing = player.transform.localScale.x < 0 ? Vector2.left : Vector2.right;
+            Vector2 facing = player.Facing < 0 ? Vector2.left : Vector2.right;
 
             Vector3 spawnPos = Vector3.zero;
             bool foundTarget = false;
@@ -459,8 +456,9 @@ namespace Portal2D.Presentation.Inventory
                 if (all.Length > 0) levelRoot = all[0].transform;
             }
 
-            // 动态生成可推动物块实体
-            PushableBlockEntity.Spawn(spawnPos, levelRoot, selected.icon);
+            foreach (var obstacle in Physics2D.OverlapBoxAll(spawnPos, Vector2.one * 0.95f, 0))
+                if (!obstacle.isTrigger && obstacle.enabled) return;
+            if (PushableBlockEntity.Spawn(spawnPos, levelRoot, selected.icon) == null) return;
 
             EventBus.Publish(new PushableBlockPlacedEvent(spawnPos, selected.id));
 

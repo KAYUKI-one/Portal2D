@@ -1,228 +1,84 @@
 using Portal2D.Core.Events;
+using SeamlessPortals2D;
 using UnityEngine;
+using PortalBody = SeamlessPortals2D.Portal2D;
 
 namespace Portal2D.Presentation.Portal
 {
-    /// <summary>
-    /// 全局传送门成对管理器 (Portal Manager)
-    /// 确保场景中严格同时仅存在一组传送门 (一个蓝色，一个红色)
-    /// </summary>
-    public class PortalManager : MonoBehaviour
+    public sealed class PortalManager : MonoBehaviour
     {
-        private static PortalManager _instance;
+        private static PortalManager instance;
         public static PortalManager Instance
         {
             get
             {
-                if (_instance == null)
-                {
-                    _instance = FindAnyObjectByType<PortalManager>();
-                    if (_instance == null)
-                    {
-                        var go = new GameObject("[PortalManager]");
-                        _instance = go.AddComponent<PortalManager>();
-                    }
-                }
-                return _instance;
+                if (instance == null) instance = FindAnyObjectByType<PortalManager>();
+                if (instance == null) instance = new GameObject("PortalManager").AddComponent<PortalManager>();
+                return instance;
             }
         }
-
-        private PortalEntity _bluePortal;
-        private PortalEntity _redPortal;
-
-        public PortalEntity BluePortal => _bluePortal;
-        public PortalEntity RedPortal => _redPortal;
-
+        [SerializeField] private PortalBody bluePrefab, redPrefab;
+        [SerializeField] private LayerMask surfaceMask = ~0;
+        public PortalBody BluePortal { get; private set; }
+        public PortalBody RedPortal { get; private set; }
+        public float PortalLength => bluePrefab != null ? bluePrefab.Length : 2.2f;
         private void Awake()
         {
-            if (_instance != null && _instance != this)
-            {
-                Destroy(gameObject);
-                return;
-            }
-            _instance = this;
+            if (instance != null && instance != this) { Destroy(gameObject); return; }
+            instance = this;
+            if (bluePrefab == null) bluePrefab = Resources.Load<PortalBody>("Gameplay/PortalA");
+            if (redPrefab == null) redPrefab = Resources.Load<PortalBody>("Gameplay/PortalB");
         }
-
         private void OnEnable()
         {
-            // 保持实例常驻
+            EventBus.Subscribe<LevelUnloadingEvent>(OnUnloading);
+            EventBus.Subscribe<PortalPlacementRequested>(OnPlacement);
+            EventBus.Subscribe<PortalSnapshotRequested>(OnSnapshot);
         }
-
         private void OnDisable()
         {
+            EventBus.Unsubscribe<LevelUnloadingEvent>(OnUnloading);
+            EventBus.Unsubscribe<PortalPlacementRequested>(OnPlacement);
+            EventBus.Unsubscribe<PortalSnapshotRequested>(OnSnapshot);
+            ClearAllPortals();
         }
-
-        /// <summary>
-        /// 检查指定点/包围盒是否正位于已联通的【地面传送门】开口上方
-        /// 用于让角色动力学系统和物理物块不被原地图的实心地面挡住，能自然“落入”传送门开口中
-        /// </summary>
-        public bool IsPointOverFloorPortal(Vector2 point, Vector2 size, out PortalEntity floorPortal)
+        private void OnPlacement(PortalPlacementRequested request) => DeployPortal(request.Type, request.Position, request.Normal);
+        private void OnSnapshot(PortalSnapshotRequested request)
         {
-            floorPortal = null;
-            if (_bluePortal != null && _bluePortal.IsLinked && _bluePortal.IsFloorPortal)
-            {
-                float left = _bluePortal.transform.position.x - _bluePortal.HalfSpan - 0.1f;
-                float right = _bluePortal.transform.position.x + _bluePortal.HalfSpan + 0.1f;
-                if (point.x >= left && point.x <= right && Mathf.Abs(point.y - _bluePortal.transform.position.y) < 1.8f)
-                {
-                    floorPortal = _bluePortal;
-                    return true;
-                }
-            }
-
-            if (_redPortal != null && _redPortal.IsLinked && _redPortal.IsFloorPortal)
-            {
-                float left = _redPortal.transform.position.x - _redPortal.HalfSpan - 0.1f;
-                float right = _redPortal.transform.position.x + _redPortal.HalfSpan + 0.1f;
-                if (point.x >= left && point.x <= right && Mathf.Abs(point.y - _redPortal.transform.position.y) < 1.8f)
-                {
-                    floorPortal = _redPortal;
-                    return true;
-                }
-            }
-
-            return false;
+            if (BluePortal != null) request.Receive?.Invoke(0, BluePortal.transform.position, BluePortal.Normal);
+            if (RedPortal != null) request.Receive?.Invoke(1, RedPortal.transform.position, RedPortal.Normal);
         }
-
-        /// <summary>
-        /// 检查水平移动是否正试图穿进某个【墙面传送门】开口
-        /// </summary>
-        public bool IsPointOverWallPortal(Vector2 point, Vector2 size, Vector2 moveDir, out PortalEntity wallPortal)
+        private void OnDestroy() { if (instance == this) instance = null; }
+        private void OnUnloading(LevelUnloadingEvent evt) => ClearAllPortals();
+        public bool TryPlacement(PortalType type, Vector2 point, Vector2 normal, out PortalPlacement placement)
         {
-            wallPortal = null;
-            if (_bluePortal != null && _bluePortal.IsLinked && _bluePortal.IsWallPortal)
-            {
-                if (Vector2.Dot(moveDir, _bluePortal.FacingNormal) < -0.3f)
-                {
-                    float portalBottom = _bluePortal.transform.position.y - _bluePortal.HalfSpan - 0.25f;
-                    float portalTop = _bluePortal.transform.position.y + _bluePortal.HalfSpan + 0.25f;
-                    if (point.y >= portalBottom && point.y <= portalTop)
-                    {
-                        if (Mathf.Abs(point.x - _bluePortal.transform.position.x) < 0.8f)
-                        {
-                            wallPortal = _bluePortal;
-                            return true;
-                        }
-                    }
-                }
-            }
-
-            if (_redPortal != null && _redPortal.IsLinked && _redPortal.IsWallPortal)
-            {
-                if (Vector2.Dot(moveDir, _redPortal.FacingNormal) < -0.3f)
-                {
-                    float portalBottom = _redPortal.transform.position.y - _redPortal.HalfSpan - 0.25f;
-                    float portalTop = _redPortal.transform.position.y + _redPortal.HalfSpan + 0.25f;
-                    if (point.y >= portalBottom && point.y <= portalTop)
-                    {
-                        if (Mathf.Abs(point.x - _redPortal.transform.position.x) < 0.8f)
-                        {
-                            wallPortal = _redPortal;
-                            return true;
-                        }
-                    }
-                }
-            }
-
-            return false;
+            if (!PortalPlacement2D.TryFit(point, normal, PortalLength, surfaceMask, out placement)) return false;
+            var other = type == PortalType.Blue ? RedPortal : BluePortal;
+            if (other != null && Vector2.Distance(placement.Position, other.transform.position) < PortalLength + 0.05f &&
+                Mathf.Abs(Vector2.Dot(placement.Normal, other.Normal)) > 0.99f) return false;
+            return true;
         }
-
-        /// <summary>
-        /// 检查角色当前位置是否正在通过某个竖直墙面传送门
-        /// 若在竖直门开口内，返回 true 并输出门洞地面的精确 Y 坐标，确保动力学系统为其提供坚实地面支撑，绝不掉入地底
-        /// </summary>
-        public bool IsPlayerPassingThroughWallPortal(Vector2 origin, Vector2 size, out float groundY)
+        public PortalBody DeployPortal(PortalType type, Vector2 position, Vector2 normal)
         {
-            groundY = 0f;
-
-            if (_bluePortal != null && _bluePortal.IsLinked && _bluePortal.IsWallPortal)
-            {
-                float portalX = _bluePortal.transform.position.x;
-                float portalY = _bluePortal.transform.position.y;
-                float halfSpan = _bluePortal.HalfSpan;
-                float floorLevel = portalY - halfSpan;
-
-                // 水平范围：门面法线两侧各 0.95 米 (包含走入墙体与走出阶段)
-                if (Mathf.Abs(origin.x - portalX) <= 0.95f)
-                {
-                    // 垂直范围：角色中心与脚底处于门洞开口高度
-                    float playerBottom = origin.y - size.y * 0.5f;
-                    if (playerBottom >= floorLevel - 0.45f && origin.y <= portalY + halfSpan + 0.45f)
-                    {
-                        groundY = floorLevel;
-                        return true;
-                    }
-                }
-            }
-
-            if (_redPortal != null && _redPortal.IsLinked && _redPortal.IsWallPortal)
-            {
-                float portalX = _redPortal.transform.position.x;
-                float portalY = _redPortal.transform.position.y;
-                float halfSpan = _redPortal.HalfSpan;
-                float floorLevel = portalY - halfSpan;
-
-                if (Mathf.Abs(origin.x - portalX) <= 0.95f)
-                {
-                    float playerBottom = origin.y - size.y * 0.5f;
-                    if (playerBottom >= floorLevel - 0.45f && origin.y <= portalY + halfSpan + 0.45f)
-                    {
-                        groundY = floorLevel;
-                        return true;
-                    }
-                }
-            }
-
-            return false;
+            Physics2D.SyncTransforms();
+            if (!TryPlacement(type, position, normal, out var placement)) return null;
+            var prefab = type == PortalType.Blue ? bluePrefab : redPrefab;
+            if (prefab == null) { Debug.LogError("Portal prefab is missing", this); return null; }
+            var portal = type == PortalType.Blue ? BluePortal : RedPortal;
+            if (portal == null) portal = Instantiate(prefab);
+            portal.name = type == PortalType.Blue ? "Portal A" : "Portal B";
+            portal.Place(placement.Position, placement.Normal, placement.Supports);
+            if (type == PortalType.Blue) BluePortal = portal; else RedPortal = portal;
+            var partner = type == PortalType.Blue ? RedPortal : BluePortal;
+            if (partner != null) portal.Link(partner);
+            EventBus.Publish(new PortalPlacedEvent(type, placement.Position, placement.Normal));
+            return portal;
         }
-
-        /// <summary>
-        /// 在指定世界坐标与表面法线部署传送门 (自动维护一蓝一红成对联动)
-        /// </summary>
-        public PortalEntity DeployPortal(PortalType type, Vector2 position, Vector2 normal)
-        {
-            PortalEntity target = (type == PortalType.Blue) ? _bluePortal : _redPortal;
-            PortalEntity partner = (type == PortalType.Blue) ? _redPortal : _bluePortal;
-
-            if (target == null)
-            {
-                var go = new GameObject(type == PortalType.Blue ? "[Portal_Blue]" : "[Portal_Red]");
-                target = go.AddComponent<PortalEntity>();
-                if (type == PortalType.Blue) _bluePortal = target;
-                else _redPortal = target;
-            }
-
-            target.transform.position = new Vector3(position.x, position.y, 0f);
-            target.gameObject.SetActive(true);
-
-            target.Initialize(type, normal, partner);
-
-            if (partner != null)
-            {
-                partner.PartnerPortal = target;
-            }
-
-            EventBus.Publish(new PortalPlacedEvent(type, position, normal));
-            return target;
-        }
-
-        /// <summary>
-        /// 清理场景中现存的所有传送门 (换关或重置时调用)
-        /// </summary>
         public void ClearAllPortals()
         {
-            if (_bluePortal != null)
-            {
-                if (Application.isPlaying) Destroy(_bluePortal.gameObject);
-                else DestroyImmediate(_bluePortal.gameObject);
-                _bluePortal = null;
-            }
-            if (_redPortal != null)
-            {
-                if (Application.isPlaying) Destroy(_redPortal.gameObject);
-                else DestroyImmediate(_redPortal.gameObject);
-                _redPortal = null;
-            }
+            foreach (var p in new[] { BluePortal, RedPortal })
+                if (p != null) { p.Unlink(); p.gameObject.SetActive(false); if (Application.isPlaying) Destroy(p.gameObject); else DestroyImmediate(p.gameObject); }
+            BluePortal = RedPortal = null;
         }
     }
 }

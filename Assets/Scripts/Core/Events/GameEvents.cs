@@ -1,56 +1,9 @@
-using Portal2D.Core.ECS;
 using UnityEngine;
 
 namespace Portal2D.Core.Events
 {
-    /// <summary>
-    /// 实体在连续 2D 空间中的位移与速度广播
-    /// </summary>
-    public readonly struct EntityMoved2DEvent
-    {
-        public readonly Entity Entity;
-        public readonly Vector2 Position;
-        public readonly Vector2 Velocity;
-        public readonly Vector2 Facing;
 
-        public EntityMoved2DEvent(Entity entity, Vector2 position, Vector2 velocity, Vector2 facing)
-        {
-            Entity = entity;
-            Position = position;
-            Velocity = velocity;
-            Facing = facing;
-        }
-    }
 
-    /// <summary>
-    /// 实体着陆 / 离地状态改变事件
-    /// </summary>
-    public readonly struct EntityGroundedChangedEvent
-    {
-        public readonly Entity Entity;
-        public readonly bool IsGrounded;
-
-        public EntityGroundedChangedEvent(Entity entity, bool isGrounded)
-        {
-            Entity = entity;
-            IsGrounded = isGrounded;
-        }
-    }
-
-    /// <summary>
-    /// 角色起跳 / 自动跨越 1 格台阶起跳事件
-    /// </summary>
-    public readonly struct PlayerJumpEvent
-    {
-        public readonly Entity Entity;
-        public readonly Vector2 StepPosition;
-
-        public PlayerJumpEvent(Entity entity, Vector2 stepPosition = default)
-        {
-            Entity = entity;
-            StepPosition = stepPosition;
-        }
-    }
 
     /// <summary>
     /// 玩家移动输入指令 (水平轴向、向下下穿、跳跃)
@@ -70,18 +23,6 @@ namespace Portal2D.Core.Events
         }
     }
 
-    /// <summary>
-    /// 实体销毁事件
-    /// </summary>
-    public readonly struct EntityDestroyedEvent
-    {
-        public readonly Entity Entity;
-
-        public EntityDestroyedEvent(Entity entity)
-        {
-            Entity = entity;
-        }
-    }
 
     /// <summary>
     /// 关卡加载完成

@@ -17,20 +17,26 @@ MonoBehaviour:
   playerSpawnPosition: {x: -7.08, y: 0.69}
   goalPosition: {x: 14.54, y: -0.16}
   goalTriggerSize: {x: 1.5, y: 2.5}
-  winCondition: 1
   loseCondition: 0
   fallDeathY: -12
-  requiredSwitchCount: 0
-  winConditions:
-  - conditionId: 99daea64
-    conditionName: "\u8E29\u4E0B\u7B2C\u4E00\u4E2A\u538B\u529B\u677F"
-    evaluateMode: 0
-    stayCompletedOnceMet: 1
-    requiredGimmickIds:
-    - Interactive_FloorButton_66
-    - Interactive_FloorButton_21
-  nextLevel: {fileID: 11400000, guid: f82ef1d4efe1ccd4587a5d7b6342d286, type: 2}
   initialCameraSize: 6
+  nextLevel: {fileID: 11400000, guid: f82ef1d4efe1ccd4587a5d7b6342d286, type: 2}
+  confineCamera: 1
+  cameraBounds:
+    serializedVersion: 2
+    x: -13
+    y: -8
+    width: 28.922403
+    height: 12.906145
+  backgroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 1}
+  backgroundSprite: {fileID: 0}
+  backgroundTint: {r: 1, g: 1, b: 1, a: 1}
+  backgroundRect:
+    serializedVersion: 2
+    x: -20
+    y: -10
+    width: 40
+    height: 25
   tilemapLayers:
   - layerName: Ground
     sortingOrder: 0
@@ -389,25 +395,27 @@ MonoBehaviour:
     layer: 9
     tiles: []
   savedItems:
-  - prefab: {fileID: 8666061610606586613, guid: 1270f87b64a4fa140a412f3987c03186, type: 3}
+  - prefab: {fileID: 4728435407508208465, guid: 38022e64435797746a037f450979664a, type: 3}
     position: {x: 5.386676, y: -1.9639438, z: 0}
     rotation: {x: -0, y: -0, z: -0, w: 1}
-    scale: {x: 0.81598, y: 0.15737964, z: 1}
+    scale: {x: 0.45, y: 0.45, z: 0.45}
     gimmickId: Interactive_FloorButton_66
-    customNormalSprite: {fileID: 5238695908213403047, guid: 4f946391295ac454ca8aef4c24ca623e, type: 3}
+    customNormalSprite: {fileID: 21300000, guid: 095862b3c81250649b10fd2901327a5b, type: 3}
     customActiveSprite: {fileID: 0}
-    customNormalColor: {r: 1, g: 1, b: 1, a: 1}
+    customNormalColor: {r: 0.55, g: 0.85, b: 1, a: 1}
     customActiveColor: {r: 0, g: 0, b: 0, a: 0}
-  - prefab: {fileID: 8666061610606586613, guid: 1270f87b64a4fa140a412f3987c03186, type: 3}
+    componentStates: []
+  - prefab: {fileID: 4728435407508208465, guid: 38022e64435797746a037f450979664a, type: 3}
     position: {x: 8.27, y: -1.92, z: 0}
     rotation: {x: -0, y: -0, z: -0, w: 1}
-    scale: {x: 0.81598, y: 0.15737964, z: 1}
+    scale: {x: 0.45, y: 0.45, z: 0.45}
     gimmickId: Interactive_FloorButton_21
-    customNormalSprite: {fileID: 5238695908213403047, guid: 4f946391295ac454ca8aef4c24ca623e, type: 3}
+    customNormalSprite: {fileID: 21300000, guid: 095862b3c81250649b10fd2901327a5b, type: 3}
     customActiveSprite: {fileID: 0}
-    customNormalColor: {r: 1, g: 1, b: 1, a: 1}
+    customNormalColor: {r: 0.55, g: 0.85, b: 1, a: 1}
     customActiveColor: {r: 0, g: 0, b: 0, a: 0}
-  - prefab: {fileID: 1144064102106492128, guid: 410505bb43b43464e8db470977f2cd7d, type: 3}
+    componentStates: []
+  - prefab: {fileID: 9078803798470565748, guid: 61e9193b490209846be3a8f7c2c0d5b1, type: 3}
     position: {x: 1.72, y: -1.29, z: 0}
     rotation: {x: -0, y: -0, z: -0, w: 1}
     scale: {x: 1, y: 1, z: 1}
@@ -416,4 +424,5 @@ MonoBehaviour:
     customActiveSprite: {fileID: 0}
     customNormalColor: {r: 1, g: 1, b: 1, a: 1}
     customActiveColor: {r: 0, g: 0, b: 0, a: 0}
+    componentStates: []
   levelContentPrefab: {fileID: 3873725324569718628, guid: 42b2e464f9dc38e41a60418e979764c8, type: 3}

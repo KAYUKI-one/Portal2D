@@ -1,0 +1,6 @@
+{
+    "name": "Portals2D.Tests",
+    "references": ["Portals2D"],
+    "optionalUnityReferences": ["TestAssemblies"],
+    "defineConstraints": ["UNITY_INCLUDE_TESTS"]
+}

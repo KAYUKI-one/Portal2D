@@ -334,19 +334,8 @@ namespace Portal2D.Presentation.UI.Controllers
                     }
                 }
 
-                // 收集玩家放置的传送门
-                var pm = Portal2D.Presentation.Portal.PortalManager.Instance;
-                if (pm != null)
-                {
-                    if (pm.BluePortal != null && pm.BluePortal.gameObject.activeInHierarchy)
-                    {
-                        mapState.portals.Add(new SavedPortalData(0, pm.BluePortal.transform.position, pm.BluePortal.FacingNormal));
-                    }
-                    if (pm.RedPortal != null && pm.RedPortal.gameObject.activeInHierarchy)
-                    {
-                        mapState.portals.Add(new SavedPortalData(1, pm.RedPortal.transform.position, pm.RedPortal.FacingNormal));
-                    }
-                }
+                EventBus.Publish(new PortalSnapshotRequested((type, position, normal) =>
+                    mapState.portals.Add(new SavedPortalData(type, position, normal))));
 
                 // 3. 写入持久化存储
                 SaveManager.SaveFull(mapState, playerState, LevelMgr.CompletedCount);

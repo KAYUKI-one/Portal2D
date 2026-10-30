@@ -62,14 +62,7 @@ namespace Portal2D.Presentation.Views
             SetupVisuals();
 
             // 根据通关规则决定初始锁闭状态
-            if (level.WinCondition == LevelWinCondition.ActivateAllSwitches)
-            {
-                LockExit(immediate: true);
-            }
-            else
-            {
-                UnlockExit(immediate: true);
-            }
+            LockExit(immediate: true);
         }
 
         public void LockExit(bool immediate = false)

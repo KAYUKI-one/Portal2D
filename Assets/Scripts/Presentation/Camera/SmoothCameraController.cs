@@ -7,7 +7,7 @@ namespace Portal2D.Presentation.CameraControl
 {
     /// <summary>
     /// 平滑跟随与限制缩放摄像机控制器
-    /// 支持平滑目标追踪、滚轮平滑缩放、视角大小上下限锁定 (最小为初始视角)
+    /// 支持连续目标追踪、滚轮缩放和整个正交画面的地图边界约束。
     /// </summary>
     [RequireComponent(typeof(Camera))]
     public class SmoothCameraController : MonoBehaviour
@@ -39,6 +39,8 @@ namespace Portal2D.Presentation.CameraControl
         private Vector3 _currentVelocity;
         private float _targetOrthoSize;
         private float _initialOrthoSize;
+        private bool _confined;
+        private Rect _bounds;
 
         public Transform Target
         {
@@ -48,6 +50,17 @@ namespace Portal2D.Presentation.CameraControl
 
         public float MinOrthoSize => minOrthoSize;
         public float MaxOrthoSize => maxOrthoSize;
+
+        public void ConfigureEnvironment(bool confined, Rect bounds, Color background)
+        {
+            _cam = GetComponent<Camera>();
+            _confined = confined && bounds.width > 0 && bounds.height > 0;
+            _bounds = bounds;
+            _cam.backgroundColor = background;
+            _cam.clearFlags = CameraClearFlags.SolidColor;
+            ApplyViewLimit();
+            transform.position = Confine(transform.position);
+        }
 
         private void Awake()
         {
@@ -71,24 +84,29 @@ namespace Portal2D.Presentation.CameraControl
             maxOrthoSize = initialSize * maxSizeMultiplier;
             _targetOrthoSize = initialSize;
             _cam.orthographicSize = initialSize;
+            ApplyViewLimit();
+            _currentVelocity = Vector3.zero;
+            transform.rotation = Quaternion.identity;
 
             if (target != null)
             {
                 Vector3 targetPos = target.position + new Vector3(targetOffset.x, targetOffset.y, 0f);
-                transform.position = new Vector3(targetPos.x, targetPos.y, -10f);
+                transform.position = Confine(new Vector3(targetPos.x, targetPos.y, -10f));
             }
         }
 
         private void LateUpdate()
         {
+            transform.rotation = Quaternion.identity;
             // 1. 鼠标滚轮缩放逻辑
             HandleZoomInput();
 
             // 2. 平滑缩放插值
             if (_cam != null && Mathf.Abs(_cam.orthographicSize - _targetOrthoSize) > 0.001f)
             {
-                _cam.orthographicSize = Mathf.Lerp(_cam.orthographicSize, _targetOrthoSize, zoomSmoothSpeed * Time.deltaTime);
+                _cam.orthographicSize = Mathf.Lerp(_cam.orthographicSize, _targetOrthoSize, 1-Mathf.Exp(-zoomSmoothSpeed * Time.deltaTime));
             }
+            ApplyViewLimit();
 
             // 3. 平滑跟随目标
             if (target != null)
@@ -96,8 +114,35 @@ namespace Portal2D.Presentation.CameraControl
                 Vector3 destPos = target.position + new Vector3(targetOffset.x, targetOffset.y, 0f);
                 destPos.z = -10f; // 锁定 2D 摄像机深度
 
-                transform.position = Vector3.SmoothDamp(transform.position, destPos, ref _currentVelocity, smoothTime);
+                // Teleports only change the target. Keep camera position and damping velocity continuous,
+                // even if another crossing arrives before the previous camera move has finished.
+                destPos = Confine(destPos);
+                Vector3 next = Vector3.SmoothDamp(transform.position, destPos, ref _currentVelocity, smoothTime);
+                Vector3 clamped = Confine(next);
+                if (!Mathf.Approximately(next.x, clamped.x)) _currentVelocity.x = 0;
+                if (!Mathf.Approximately(next.y, clamped.y)) _currentVelocity.y = 0;
+                transform.position = clamped;
             }
+        }
+
+        private float MaximumViewSize() => _confined
+            ? Mathf.Min(maxOrthoSize, _bounds.height * 0.5f, _bounds.width / (2 * Mathf.Max(0.01f, _cam.aspect)))
+            : maxOrthoSize;
+        private void ApplyViewLimit()
+        {
+            if (_cam == null) return;
+            float max = Mathf.Max(0.01f, MaximumViewSize());
+            _targetOrthoSize = Mathf.Clamp(_targetOrthoSize, Mathf.Min(minOrthoSize, max), max);
+            // A changed aspect ratio or a small map must never expose space outside the map.
+            _cam.orthographicSize = Mathf.Min(_cam.orthographicSize, max);
+        }
+        private Vector3 Confine(Vector3 position)
+        {
+            if (!_confined || _cam == null) return position;
+            float halfHeight = _cam.orthographicSize, halfWidth = halfHeight * _cam.aspect;
+            position.x = Mathf.Clamp(position.x, _bounds.xMin + halfWidth, _bounds.xMax - halfWidth);
+            position.y = Mathf.Clamp(position.y, _bounds.yMin + halfHeight, _bounds.yMax - halfHeight);
+            return position;
         }
 
         private void HandleZoomInput()
@@ -125,7 +170,8 @@ namespace Portal2D.Presentation.CameraControl
 
                 // 向上滚缩小视野 (数值变小，拉近放大角色)，向下滚放大视野 (数值变大，拉远看全景)
                 float zoomChange = -normalizedScroll * zoomSpeed;
-                _targetOrthoSize = Mathf.Clamp(_targetOrthoSize + zoomChange, minOrthoSize, maxOrthoSize);
+                float max = Mathf.Max(0.01f, MaximumViewSize());
+                _targetOrthoSize = Mathf.Clamp(_targetOrthoSize + zoomChange, Mathf.Min(minOrthoSize, max), max);
             }
         }
     }

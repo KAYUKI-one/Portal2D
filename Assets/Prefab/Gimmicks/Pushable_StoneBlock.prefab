@@ -105,7 +105,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 4e4c01c4f41453d40b2ff9d96d907c8b, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -155,7 +155,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 3
   m_LinearDamping: 0
-  m_AngularDamping: 0.05
+  m_AngularDamping: 0
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -164,10 +164,10 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!114 &3614868512095984853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,4 +187,3 @@ MonoBehaviour:
   itemDescription: "\u539A\u91CD\u7ED3\u5B9E\u7684\u77F3\u5757\uFF0C\u53EF\u88AB\u89D2\u8272\u63A8\u52A8\u4EE5\u538B\u4F4F\u538B\u529B\u677F\uFF0C\u624B\u6301\u65F6\u6309
     F \u6216\u5DE6\u952E\u653E\u7F6E\uFF0C\u53F3\u952E\u53EF\u8FDC\u7A0B\u6536\u56DE\u3002"
   maxRecallDistance: 6
-  blockMass: 3

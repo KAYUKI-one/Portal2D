@@ -74,7 +74,6 @@ namespace Portal2D.Presentation.Gimmicks
         private bool IsTriggeringEntity(Collider2D other)
         {
             if (other.CompareTag("Player") || other.GetComponentInParent<PlayerEntityView>() != null) return true;
-            if (other.GetComponentInParent<PushableBlockEntity>() != null || other.GetComponentInParent<PuzzleBlockEntity>() != null) return true;
             if (other.attachedRigidbody != null && other.attachedRigidbody.bodyType == RigidbodyType2D.Dynamic) return true;
             return false;
         }

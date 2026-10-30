@@ -17,19 +17,10 @@ MonoBehaviour:
   playerSpawnPosition: {x: -10.87, y: -2.47}
   goalPosition: {x: 23.85, y: -5.42}
   goalTriggerSize: {x: 1.5, y: 2.5}
-  winCondition: 1
   loseCondition: 0
   fallDeathY: -12
-  requiredSwitchCount: 0
-  winConditions:
-  - conditionId: 13971e2f
-    conditionName: "\u6309E\u62C9\u5F00\u4E3B\u63A7\u7535\u95F8"
-    evaluateMode: 0
-    stayCompletedOnceMet: 1
-    requiredGimmickIds:
-    - Interactive_WallSwitch_76
-  nextLevel: {fileID: 11400000, guid: f9c103bdedb606f45971ed4d9b889586, type: 2}
   initialCameraSize: 6
+  nextLevel: {fileID: 11400000, guid: f9c103bdedb606f45971ed4d9b889586, type: 2}
   tilemapLayers:
   - layerName: Ground
     sortingOrder: 0
@@ -362,12 +353,12 @@ MonoBehaviour:
     layer: 9
     tiles: []
   savedItems:
-  - prefab: {fileID: 4601269132135768513, guid: ebf898076d614f144a71b0b150a34569, type: 3}
+  - prefab: {fileID: 4728435407508208465, guid: 38022e64435797746a037f450979664a, type: 3}
     position: {x: 3.83, y: -3.26, z: 0}
-    rotation: {x: -0, y: -0, z: -0, w: 1}
-    scale: {x: 1, y: 1, z: 1}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    scale: {x: 0.45, y: 0.45, z: 0.45}
     gimmickId: Interactive_WallSwitch_76
-    customNormalSprite: {fileID: -2424191342817799365, guid: 868aed319b16b4c47a78b43ce6f4f432, type: 3}
+    customNormalSprite: {fileID: 0}
     customActiveSprite: {fileID: 0}
     customNormalColor: {r: 1, g: 1, b: 1, a: 1}
     customActiveColor: {r: 0, g: 0, b: 0, a: 0}
