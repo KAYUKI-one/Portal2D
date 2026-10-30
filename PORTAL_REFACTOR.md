@@ -114,3 +114,9 @@ Player 的地面加速度由 45 提高至 120，并同步到实际 Player 预制
 - 边界与相机共用原有持久化矩形，保存/重载以及背景兼容共 9 项通过，记录 `solid-boundary-persistence-after.json`。生成的边界不会被误存为物件预制体。
 
 以上记录位于 `Logs/Validation`。修改前备份：`C:/Users/Priestess/.codex/tmp/Portal2D-before-flicker-boundary-20261030.zip`；测试前已备份磁盘场景并保存当时的场景编辑，未丢弃未保存内容。API 语义核对使用本机 `PolygonCollider2D-pathCount.html`。本轮未重新构建 Windows 可执行文件。
+
+## 更换 Amiya 后的角色倾倒
+
+场景中的 Amiya 已配置 Rigidbody2D、控制器和 PlayerUpright，但刚体约束为 None；旧 PlayerUpright 只在传送后扶正，无法阻止普通地面接触产生的旋转。现在该角色组件启用时管理 FreezeRotation，保留已有位置约束；停用时只撤销自身添加的旋转约束。程序控制的传送旋转与出门扶正仍有效，普通物块不受影响。
+
+使用当前场景 Amiya 的运行时副本验证移动、推箱和反向行走：修复前最大倾角 121.51°，修复后为 0°，可推动标准物块约 8.45 单位。另以足够容纳该角色尺寸的测试门验证地面到墙面的传送：交接旋转 90°、速度由 (0,-12) 映射到 (12,0)，随后恢复直立，摄像机未旋转。记录为 `Logs/Validation/amiya-upright-before.json`、`amiya-upright-after.json` 和 `amiya-upright-portal-after.json`。测试使用临时对象，未修改角色模型、碰撞尺寸或正式传送门尺寸。

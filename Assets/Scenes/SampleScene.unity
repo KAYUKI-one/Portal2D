@@ -6524,6 +6524,40 @@ Texture2D:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1400750437 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2268849585751873658, guid: 1e066134fb9d81347bbbf64b37b54a35, type: 3}
+  m_PrefabInstance: {fileID: 443448845612549233}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1400750444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1400750437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38a406bcb4c3bab41b9137b51045eeaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Portal2D.Presentation.Views.PlayerUpright
+  degreesPerSecond: 360
+--- !u!114 &1400750445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1400750437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c8a6ec348a56994ab64b19b81e95a2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Portal2D.Presentation.Views.RigidbodyPlayerController
+  moveSpeed: 5.5
+  groundAcceleration: 120
+  airAcceleration: 12
+  jumpSpeed: 11
 --- !u!1 &1403009884
 GameObject:
   m_ObjectHideFlags: 0
@@ -8405,6 +8439,10 @@ PrefabInstance:
     - target: {fileID: 5808487283029029699, guid: 4c219fa7ffe764f4b9b89de69754282a, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5808487283029029699, guid: 4c219fa7ffe764f4b9b89de69754282a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11274,7 +11312,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2268849585751873658, guid: 1e066134fb9d81347bbbf64b37b54a35, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2268849585751873658, guid: 1e066134fb9d81347bbbf64b37b54a35, type: 3}
       propertyPath: m_TagString
@@ -11336,6 +11374,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6735120695653929326, guid: 1e066134fb9d81347bbbf64b37b54a35, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6735120695653929326, guid: 1e066134fb9d81347bbbf64b37b54a35, type: 3}
+      propertyPath: m_GravityScale
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6735120695653929326, guid: 1e066134fb9d81347bbbf64b37b54a35, type: 3}
+      propertyPath: m_AngularDamping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6735120695653929326, guid: 1e066134fb9d81347bbbf64b37b54a35, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6847137062629090035, guid: 1e066134fb9d81347bbbf64b37b54a35, type: 3}
       propertyPath: m_SortingLayer
       value: 0
@@ -11364,11 +11418,21 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: -0.13026237
       objectReference: {fileID: 0}
+    - target: {fileID: 7968109725296883293, guid: 1e066134fb9d81347bbbf64b37b54a35, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 856829340452664735, guid: 1e066134fb9d81347bbbf64b37b54a35, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2268849585751873658, guid: 1e066134fb9d81347bbbf64b37b54a35, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1400750445}
+    - targetCorrespondingSourceObject: {fileID: 2268849585751873658, guid: 1e066134fb9d81347bbbf64b37b54a35, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1400750444}
   m_SourcePrefab: {fileID: 100100000, guid: 1e066134fb9d81347bbbf64b37b54a35, type: 3}
 --- !u!1001 &625547388738913769
 PrefabInstance:

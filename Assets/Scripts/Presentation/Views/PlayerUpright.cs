@@ -10,9 +10,23 @@ namespace Portal2D.Presentation.Views
         private Rigidbody2D body;
         private BoxCollider2D shape;
         private bool needsUpright;
+        private bool rotationWasFrozen;
         private void Awake() { body = GetComponent<Rigidbody2D>(); shape = GetComponent<BoxCollider2D>(); }
-        private void OnEnable() => PortalEvents.Transit += Transit;
-        private void OnDisable() => PortalEvents.Transit -= Transit;
+        private void OnEnable()
+        {
+            // This character component owns passive rotation stability, independently of its model.
+            // Explicit portal rotations and MoveRotation can still change its orientation.
+            rotationWasFrozen = (body.constraints & RigidbodyConstraints2D.FreezeRotation) != 0;
+            body.constraints |= RigidbodyConstraints2D.FreezeRotation;
+            body.angularVelocity = 0;
+            needsUpright = Mathf.Abs(Mathf.DeltaAngle(body.rotation, 0)) > 0.01f;
+            PortalEvents.Transit += Transit;
+        }
+        private void OnDisable()
+        {
+            PortalEvents.Transit -= Transit;
+            if (body != null && !rotationWasFrozen) body.constraints &= ~RigidbodyConstraints2D.FreezeRotation;
+        }
         private void Transit(PortalTransitEvent evt)
         {
             if (evt.Body == body && evt.Phase == PortalTransitPhase.Teleported) needsUpright = true;
