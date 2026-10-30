@@ -1,0 +1,307 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56d9751128a4c09499c294c4fe91269d, type: 3}
+  m_Name: Level_1030_1739
+  m_EditorClassIdentifier: Assembly-CSharp::Portal2D.Core.Data.LevelAsset
+  levelId: Level_1030_1739
+  levelDisplayName: "3\u5173"
+  playerSpawnPosition: {x: -17.04, y: 2.35}
+  goalPosition: {x: 7.82, y: -0.56}
+  goalTriggerSize: {x: 1.5, y: 2.5}
+  winCondition: 1
+  loseCondition: 0
+  fallDeathY: -12
+  requiredSwitchCount: 0
+  winConditions:
+  - conditionId: 4e2580dc
+    conditionName: "\u6761\u4EF6 #1"
+    evaluateMode: 0
+    stayCompletedOnceMet: 1
+    requiredGimmickIds:
+    - WallSwitch
+  nextLevel: {fileID: 0}
+  initialCameraSize: 6
+  tilemapLayers:
+  - layerName: Ground
+    sortingOrder: 0
+    layer: 8
+    tiles:
+    - position: {x: -22, y: -6, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -21, y: -6, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -20, y: -6, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -19, y: -6, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -18, y: -6, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -17, y: -6, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -16, y: -6, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -15, y: -6, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -14, y: -6, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -13, y: -6, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -12, y: -6, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -11, y: -6, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -10, y: -6, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -9, y: -6, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -8, y: -6, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -7, y: -6, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -6, y: -6, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -5, y: -6, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -4, y: -6, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -3, y: -6, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -2, y: -6, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -1, y: -6, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: 0, y: -6, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: 1, y: -6, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: 2, y: -6, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: 3, y: -6, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: 4, y: -6, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: 5, y: -6, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: 6, y: -6, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: 7, y: -6, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: 8, y: -6, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: 9, y: -6, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: 10, y: -6, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: 11, y: -6, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: 12, y: -6, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -22, y: -5, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -21, y: -5, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -20, y: -5, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -19, y: -5, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -18, y: -5, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -17, y: -5, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -16, y: -5, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -15, y: -5, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -14, y: -5, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -13, y: -5, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -12, y: -5, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -11, y: -5, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -10, y: -5, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -9, y: -5, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -8, y: -5, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -7, y: -5, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -6, y: -5, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -5, y: -5, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -4, y: -5, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -3, y: -5, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -2, y: -5, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -1, y: -5, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: 0, y: -5, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: 1, y: -5, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: 2, y: -5, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: 3, y: -5, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: 4, y: -5, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: 5, y: -5, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: 6, y: -5, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: 7, y: -5, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: 8, y: -5, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: 9, y: -5, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: 10, y: -5, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: 11, y: -5, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: 12, y: -5, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -22, y: -4, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -21, y: -4, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -20, y: -4, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -19, y: -4, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -18, y: -4, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -17, y: -4, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -16, y: -4, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -15, y: -4, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -14, y: -4, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -13, y: -4, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -12, y: -4, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -11, y: -4, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -10, y: -4, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -9, y: -4, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -8, y: -4, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -7, y: -4, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -6, y: -4, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -5, y: -4, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -4, y: -4, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -3, y: -4, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -2, y: -4, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -1, y: -4, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: 0, y: -4, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: 1, y: -4, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: 2, y: -4, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: 3, y: -4, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: 4, y: -4, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: 5, y: -4, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: 6, y: -4, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: 7, y: -4, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: 8, y: -4, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: 9, y: -4, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: 10, y: -4, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: 11, y: -4, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: 12, y: -4, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -18, y: -3, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -17, y: -3, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: 5, y: -3, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: 6, y: -3, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: 7, y: -3, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: 8, y: -3, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: 9, y: -3, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: 10, y: -3, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -18, y: -2, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -17, y: -2, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: 9, y: -2, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: 10, y: -2, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -18, y: -1, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -17, y: -1, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: 9, y: -1, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: 10, y: -1, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -18, y: 0, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+    - position: {x: -17, y: 0, z: 0}
+      tile: {fileID: 11400000, guid: 42fb2d4aad76dd447ba03e75da2dbf30, type: 2}
+  - layerName: Platforms
+    sortingOrder: 1
+    layer: 9
+    tiles: []
+  savedItems:
+  - prefab: {fileID: 1144064102106492128, guid: 410505bb43b43464e8db470977f2cd7d, type: 3}
+    position: {x: -11.59, y: -2.13, z: 0}
+    rotation: {x: -0, y: -0, z: -0, w: 1}
+    scale: {x: 1, y: 1, z: 1}
+    gimmickId: Pushable_StoneBlock_52
+    customNormalSprite: {fileID: -8656112389071027846, guid: d359bcc2294a72549bf7b628bec53403, type: 3}
+    customActiveSprite: {fileID: 0}
+    customNormalColor: {r: 1, g: 1, b: 1, a: 1}
+    customActiveColor: {r: 0, g: 0, b: 0, a: 0}
+  - prefab: {fileID: 4601269132135768513, guid: ebf898076d614f144a71b0b150a34569, type: 3}
+    position: {x: 1.33, y: -2.13, z: 0}
+    rotation: {x: -0, y: -0, z: -0, w: 1}
+    scale: {x: 1, y: 1, z: 1}
+    gimmickId: Interactive_WallSwitch_78
+    customNormalSprite: {fileID: -2424191342817799365, guid: 868aed319b16b4c47a78b43ce6f4f432, type: 3}
+    customActiveSprite: {fileID: 0}
+    customNormalColor: {r: 1, g: 1, b: 1, a: 1}
+    customActiveColor: {r: 0, g: 0, b: 0, a: 0}
+  levelContentPrefab: {fileID: 0}

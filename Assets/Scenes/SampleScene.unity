@@ -663,6 +663,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2fa83f5b505cb2240b3af16e516a382e, type: 2}
   - {fileID: 11400000, guid: 17b374417ac26754e8600c883a0e14a0, type: 2}
   - {fileID: 11400000, guid: f82ef1d4efe1ccd4587a5d7b6342d286, type: 2}
+  - {fileID: 11400000, guid: f9c103bdedb606f45971ed4d9b889586, type: 2}
 --- !u!1 &212099150
 GameObject:
   m_ObjectHideFlags: 0
@@ -8171,6 +8172,10 @@ PrefabInstance:
     - target: {fileID: 2268849585751873658, guid: 1e066134fb9d81347bbbf64b37b54a35, type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2268849585751873658, guid: 1e066134fb9d81347bbbf64b37b54a35, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2268849585751873658, guid: 1e066134fb9d81347bbbf64b37b54a35, type: 3}
       propertyPath: m_TagString

@@ -28,7 +28,7 @@ MonoBehaviour:
     stayCompletedOnceMet: 1
     requiredGimmickIds:
     - Interactive_WallSwitch_76
-  nextLevel: {fileID: 0}
+  nextLevel: {fileID: 11400000, guid: f9c103bdedb606f45971ed4d9b889586, type: 2}
   initialCameraSize: 6
   tilemapLayers:
   - layerName: Ground
